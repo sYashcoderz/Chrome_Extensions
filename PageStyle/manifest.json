@@ -1,0 +1,21 @@
+{
+    "manifest_version":3,
+    "name":"pageFontStyle",
+    "version":"1.0",
+    "description":"Page Action PageFontStyle",
+    "icons":{
+        "128":"128px.png",
+        "16":"16px.png"
+    },
+    "action": {
+        "default_icon": "16px.png",
+        "default_popup": "FontStyle.html",
+        "default_title": "PageFontStyle"
+    },
+    "background":{
+        "service_worker":"events.js"
+    },
+    "permissions":[
+        "tabs"
+    ]
+}

@@ -1,0 +1,113 @@
+
+
+
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+    if (msg.command == 'runcomplete') {
+        document.querySelector('textarea').value = JSON.stringify( msg.data); 
+    }
+});
+
+function createCommandObject() {
+    commandsArr = [];
+
+    let commands = document.querySelectorAll('.commands-list .command-item');
+    for (let i = 0; i < commands.length; i++) {
+        let itemObj = {};
+        itemObj.type = commands[i].querySelector('select').value;
+        itemObj.one = commands[i].querySelector('.value-1').value;
+        itemObj.two = commands[i].querySelector('.value-2').value;
+        commandsArr.push(itemObj);
+
+    }
+
+    console.log(commandsArr);
+    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+        let activeTab = tabs[0];
+        let obj = commandsArr;
+        chrome.tabs.sendMessege(activeTab.id, { command: "runcommands", data: obj });
+    });
+}
+
+document.querySelector('.run-command').addEventListener('click', function () {
+    createCommandObject();
+});
+
+document.querySelector('.new-command').addEventListener('click', function () {
+    let newItem = `<div class= "command-item" >
+    <select>
+        <option value="wait">Wait</option>
+        <option value="click">click</option>
+        <option value="enter">enter</option>
+        <option value="save">save</option>
+    </select>
+    <input class="value-1" placeholder="200ms"/>
+    <input class="value-2" placeholder="optional"/>
+</div>`
+    document.querySelector('.commands-list').innerHTML += newItem;
+});
+
+chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+
+})
+
+
+=======================================================================================
+
+
+
+chrome.runtime.onMessage.addListener((msg, sender, response) => {
+
+    if (msg.command == "runcommands") {
+
+        let scrapeObj = msg.data;
+        getNextItem(scrapeObj,0);
+
+        window.scraperExt = [];
+    }
+});
+
+if(typeof obj[index] !=='undefined'){
+
+    if(obj[item].type == 'click'){
+        clickEvent(obj, index);
+    } else {
+        //soon
+        alert('commands have been run');
+        chrome.runtime.sendMessage({command:"run-complete", data: window.scraperExt});
+
+    }
+}
+
+function waitEvent(obj, item){
+    let item= obj[index];
+    let waitTime = parseInt(item.one);
+    setTimeout(function(){
+        getNextItem(obj, (index+1));
+    }, item.one);
+}
+
+function getNextItem(obj,index){
+    getNextItem(obj,(index+ 1));
+}
+
+function clickEvent( obj, index) {
+    let item=obj[index];
+    document.querySelector(item.one).click();
+    getNextItem(obj, (index+1));
+
+}
+function saveEvent( obj, index) {
+    let item=obj[index];
+    let value=document.querySelector(item.one).innerText;
+    window.scraperExt.push(value);
+getNextItem(obj, (index+1));
+
+}
+function enterEvent( obj, index){
+    let item=obj[index];
+    let value=document.querySelector(item.one).value=item.two;
+ getNextItem(obj, (index+1));
+
+}
+
+

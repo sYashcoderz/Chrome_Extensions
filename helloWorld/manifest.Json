@@ -1,0 +1,14 @@
+{
+    "manifest_version":3,
+    "name":"Hello World",
+    "version":"1.0",
+    "description":"My First Hello World.",
+    "icons":{
+        "128":"128px.png",
+        "16":"16px.png"
+    },
+    "action":{
+        "default_icon":"16px.png",
+        "default_popup":"index.html"
+    }
+}

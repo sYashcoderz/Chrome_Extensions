@@ -1,0 +1,27 @@
+{
+    "manifest_version":3,
+    "name":"Budget Manager",
+    "version":"1.0",
+    "description":"Your Personel Budget Manager.",
+    "icons":{
+        "128":"128px.png",
+        "16":"16px.png"
+    },
+    "action":{
+        "default_icon":"16px.png",
+        "default_popup":"Budget.html"
+    },
+
+    "background" :{
+        "service_worker":"events.js"
+    },
+
+    "permissions": [
+        "storage",
+        "notifications",
+        "contextMenus"
+    ],
+
+    "options_page":"options.html" 
+
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoceBolt</title>
+    <style>
+
+        body{
+            width: 300px;
+        }
+
+        .todo-items, .todo-items li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .todo-items li{
+            padding: 8px;
+            border-bottom: solid 2px grey;
+            font-size:medium ;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .todo-items li:hover{
+            color: orangered;
+            background-color:bisque;
+        }
+
+        .item{
+            text-decoration: line-through;
+        }
+
+        .todo-items div span{
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .new-item{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+        <h3 id="greet">My Todo's List</h3>
+
+        <button class="create-todo">Add Item</button>
+        <div class="new-item">
+            <input type="text">
+            <button>Save</button>
+        </div>
+
+        <ul class="todo-items">
+            <!-- <li class="done"><span class="item">Data</span> <div><span>✍</span> <span>🗑</span></div></li> -->
+            <!-- <li class="done"><span class="item">Data</span> <div><span>✍</span> <span>🗑</span></div></li>
+            <li class="done"><span class="item">Data</span> <div><span>✍</span> <span>🗑</span></div></li> -->
+        </ul>
+    <script src="popout.js"></script>
+</body>
+</html>
